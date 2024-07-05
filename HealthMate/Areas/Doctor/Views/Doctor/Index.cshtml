@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BookAnAppointment>
+
+@{
+    ViewData["Title"] = "Doctor's Dashboard";
+}
+
+<h2>Appointment Requests</h2>
+
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.Name</td>
+                <td>@appointment.Age</td>
+                <td>@appointment.Date</td>
+                <td>@appointment.Status</td>
+                <td>
+                    @if (appointment.Status == "Pending")
+                    {
+                        <button class="btn btn-success" onclick="updateStatus(@appointment.Id, 'Approved')">Approve</button>
+                        <button class="btn btn-danger" onclick="updateStatus(@appointment.Id, 'Rejected')">Reject</button>
+                    }
+                    @if (appointment.Status == "Approved")
+                    {
+                        <button class="btn btn-primary" onclick="updateStatus(@appointment.Id, 'Appointed')">Appoint</button>
+                    }
+                    @if (appointment.Status == "Appointed")
+                    {
+                        <button class="btn btn-info" onclick="addPrescription(@appointment.Id)">Add Prescription</button>
+                        <button class="btn btn-warning" onclick="requestDiagnosis(@appointment.Id)">Request Diagnosis</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function updateStatus(appointmentId, status) {
+            $.post('@Url.Action("UpdateStatus", "Doctor")', { id: appointmentId, status: status }, function () {
+                location.reload();
+            });
+        }
+
+        function addPrescription(appointmentId) {
+            window.location.href = '@Url.Action("AddPrescription", "Doctor")' + '?id=' + appointmentId;
+        }
+
+        function requestDiagnosis(appointmentId) {
+            $.post('@Url.Action("RequestDiagnosis", "Doctor")', { id: appointmentId }, function () {
+                location.reload();
+            });
+        }
+    </script>
+}

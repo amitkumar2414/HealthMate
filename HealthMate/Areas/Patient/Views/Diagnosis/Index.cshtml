@@ -1,0 +1,297 @@
+﻿@* @model IEnumerable<HealthMate.Models.Diagnosis>
+
+@{
+    ViewData["Title"] = "Diagnoses";
+}
+
+<div class="container-fluid" style="font-size: larger; margin-top: 1rem;">
+    <div class="row p-3">
+        <div class="col-6">
+            <h3>Diagnosis List</h3>
+        </div>
+    </div>
+</div>
+
+<div class="listContainer" style="margin-top: 1rem; padding: 0 5rem">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Test ID</th>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Referred by Doctor</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PatientId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Patient.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Doctor.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Appointment.Date)</td>
+                    <td>
+                        <button class="btn btn-secondary view-report" data-id="@item.Id">View Report</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal fade" id="diagnosisModal" tabindex="-1" role="dialog" aria-labelledby="diagnosisModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="text-align: left">
+            <div class="modal-header">
+                <h5 class="modal-title" id="diagnosisModalLabel">Diagnosis Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Value</th>
+                            <th>Reference Range</th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <th>Hemoglobin</th>
+                            <td id="hemoglobin"></td>
+                            <td>13.8-17.2 g/dL (Men), 12.1-15.1 g/dL (Women)</td>
+                        </tr>
+                        <tr>
+                            <th>TLC</th>
+                            <td id="tlc"></td>
+                            <td>4,000-11,000 cells/µL</td>
+                        </tr>
+                        <tr>
+                            <th>DLC</th>
+                            <td id="dlc"></td>
+                            <td>4000-10000 /cumm</td>
+                        </tr>
+                        <tr>
+                            <th>RBC Count</th>
+                            <td id="rbcCount"></td>
+                            <td>4.5 - 5.5 Mil</td>
+                        </tr>
+                        <tr>
+                            <th>Platelets Count</th>
+                            <td id="plateletsCount"></td>
+                            <td>150,000-450,000 cells/µL</td>
+                        </tr>
+                        <tr>
+                            <th>Blood Sugar</th>
+                            <td id="bloodSugar"></td>
+                            <td>70-99 mg/dL (Fasting), less than 140 mg/dL (Postprandial)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6>Refered By: Dr. <span id="referredByDoctor"></span></h6>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.view-report').on('click', function () {
+                var diagnosisId = $(this).data('id');
+                $.ajax({
+                    url: '/Patient/Diagnosis/GetDiagnosisDetails',
+                    type: 'GET',
+                    data: { id: diagnosisId },
+                    success: function (data) {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            $('#diagnosisId').text(data.diagnosisId);
+                            $('#patientName').text(data.patientName);
+                            $('#doctorName').text(data.doctorName);
+                            $('#hemoglobin').text(data.hemoglobin);
+                            $('#tlc').text(data.tlc);
+                            $('#dlc').text(data.dlc);
+                            $('#rbcCount').text(data.rbcCount);
+                            $('#plateletsCount').text(data.plateletsCount);
+                            $('#bloodSugar').text(data.bloodSugar);
+                            $('#referredByDoctor').text(data.referredByDoctor);
+                            $('#diagnosisModal').modal('show');
+                        }
+                    },
+                    error: function () {
+                        alert('Error fetching diagnosis details.');
+                    }
+                });
+            });
+        });
+    </script>
+}
+ *@
+
+
+
+                            @model IEnumerable<HealthMate.Models.Diagnosis>
+
+@{
+    ViewData["Title"] = "Diagnoses";
+}
+
+<div class="container-fluid" style="font-size: larger; margin-top: 1rem;">
+    <div class="row p-3">
+        <div class="col-6">
+            <h3>Diagnosis List</h3>
+        </div>
+    </div>
+</div>
+
+<div class="listContainer" style="margin-top: 1rem; padding: 0 5rem">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Test ID</th>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Referred by Doctor</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PatientId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Patient.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Doctor.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Appointment.Date)</td>
+                    <td>
+                        <button class="btn btn-secondary view-report" data-id="@item.Id">View Report</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="diagnosisModal" tabindex="-1" role="dialog" aria-labelledby="diagnosisModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="text-align: left">
+            <div class="modal-header">
+                <h5 class="modal-title" id="diagnosisModalLabel">Diagnosis Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Value</th>
+                            <th>Reference Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Hemoglobin</th>
+                            <td id="hemoglobin"></td>
+                            <td>13.8-17.2 g/dL (Men), 12.1-15.1 g/dL (Women)</td>
+                        </tr>
+                        <tr>
+                            <th>TLC</th>
+                            <td id="tlc"></td>
+                            <td>4,000-11,000 cells/µL</td>
+                        </tr>
+                        <tr>
+                            <th>DLC</th>
+                            <td id="dlc"></td>
+                            <td>4000-10000 /cumm</td>
+                        </tr>
+                        <tr>
+                            <th>RBC Count</th>
+                            <td id="rbcCount"></td>
+                            <td>4.5 - 5.5 Mil</td>
+                        </tr>
+                        <tr>
+                            <th>Platelets Count</th>
+                            <td id="plateletsCount"></td>
+                            <td>150,000-450,000 cells/µL</td>
+                        </tr>
+                        <tr>
+                            <th>Blood Sugar</th>
+                            <td id="bloodSugar"></td>
+                            <td>70-99 mg/dL (Fasting), less than 140 mg/dL (Postprandial)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6>Referred By: Dr. <span id="referredByDoctor"></span></h6>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="printDiagnosisReport()">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+@section scripts {
+    <script>
+        function printDiagnosisReport() {
+            var printContent = document.getElementById('diagnosisModal').innerHTML;
+            var originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+            window.location.reload();
+        }
+
+        $(document).ready(function () {
+            $('.view-report').on('click', function () {
+                var diagnosisId = $(this).data('id');
+                $.ajax({
+                    url: '/Patient/Diagnosis/GetDiagnosisDetails',
+                    type: 'GET',
+                    data: { id: diagnosisId },
+                    success: function (data) {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            $('#hemoglobin').text(data.hemoglobin);
+                            $('#tlc').text(data.tlc);
+                            $('#dlc').text(data.dlc);
+                            $('#rbcCount').text(data.rbcCount);
+                            $('#plateletsCount').text(data.plateletsCount);
+                            $('#bloodSugar').text(data.bloodSugar);
+                            $('#referredByDoctor').text(data.referredByDoctor);
+                            $('#diagnosisModal').modal('show');
+                        }
+                    },
+                    error: function () {
+                        alert('Error fetching diagnosis details.');
+                    }
+                });
+            });
+        });
+    </script>
+}

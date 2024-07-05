@@ -1,0 +1,158 @@
+﻿@model IEnumerable<BookAnAppointment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid" style="font-size: larger; margin-top: 1rem">
+    <div class="row p-3">
+        <div class="col-6">
+            <h3>Appointment History</h3>
+        </div>
+        <div class="col-6" style="text-align: center">
+            <a class="btn btn-success" asp-action="CreateAppointment" asp-controller="BookAnAppointment">Make an Appointment</a>
+        </div>
+    </div>
+</div>
+
+<div class="listContainer" style="margin-top: 1rem; padding: 0 4rem">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Appointment ID
+                </th>
+                <th>
+                    Patient ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    Appointment Date
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor)
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Doctor.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <button class="btn btn-secondary view-prescription" data-id="@item.Id">View Prescription</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="prescriptionModal" tabindex="-1" role="dialog" aria-labelledby="prescriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="prescriptionModalLabel">Prescription Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: left">
+                <p><strong>Prescription ID:</strong> <span id="prescriptionId"></span></p>
+                <p><strong>Patient Name:</strong> <span id="patientName"></span></p>
+                <p><strong>Doctor Name:</strong> <span id="doctorName"></span></p>
+                <p><strong>Prescription:</strong> <span id="prescriptionContent"></span></p>
+                <p><strong>Next Appointment:</strong> <span id="nextAppointment"></span></p>
+                <p><strong>Diagnosis Required:</strong> <span id="diagnosisRequired"></span></p>
+                <div id="diagnosisButtonContainer" style="display:none;">
+                    @* <a id="diagnosisLink" class="btn btn-primary" href="#">Go to Diagnosis</a> *@
+                    <a id="diagnosisLink" class="btn btn-primary" asp-area="" asp-controller="Diagnosis" asp-action="Index">Go to Diagnosis</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.view-prescription').on('click', function () {
+                var appointmentId = $(this).data('id');
+                $.ajax({
+                    url: '/Patient/BookAnAppointment/GetPrescriptionDetails',
+                    type: 'GET',
+                    data: { id: appointmentId },
+                    success: function (data) {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            $('#prescriptionId').text(data.prescriptionId);
+                            $('#patientName').text(data.patientName);
+                            $('#doctorName').text(data.doctorName);
+                            $('#prescriptionContent').text(data.prescriptionContent);
+                            $('#nextAppointment').text(data.nextAppointment);
+                            $('#diagnosisRequired').text(data.diagnosisRequired ? 'YES' : 'No');
+                            if (data.diagnosisRequired) {
+                                $('#diagnosisButtonContainer').show();
+                                // $('#diagnosisLink').attr('href', '/Diagnosis/' + data.diagnosisId);
+                                // $('#diagnosisLink').attr('href', '/Diagnosis/' + data.diagnosisId);
+                            } else {
+                                $('#diagnosisButtonContainer').hide();
+                            }
+                            $('#prescriptionModal').modal('show');
+                        }
+                    },
+                    error: function () {
+                        alert('Error fetching prescription details.');
+                    }
+                });
+            });
+        });
+    </script>
+}

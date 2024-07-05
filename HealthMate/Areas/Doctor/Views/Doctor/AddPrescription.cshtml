@@ -1,0 +1,89 @@
+﻿@* @model Prescription
+
+@{
+    ViewData["Title"] = "Add Prescription";
+}
+
+<h2>Add Prescription</h2>
+
+@if (Model != null)
+{
+    <form asp-area="Doctor" asp-action="AddPrescription" asp-controller="Doctor" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="PrescriptionInfo" class="control-label"></label>
+            <textarea asp-for="PrescriptionInfo" class="form-control"></textarea>
+            <span asp-validation-for="PrescriptionInfo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NextAppointment" class="control-label"></label>
+            <input asp-for="NextAppointment" class="form-control" />
+            <span asp-validation-for="NextAppointment" class="text-danger"></span>
+
+        </div>
+        <input type="hidden" asp-for="AppointmentId"/>
+        <input type="hidden" asp-for="DoctorId" />
+        <input type="hidden" asp-for="PatientId" />
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" />
+        </div>
+    </form>
+}
+else
+{
+    <p>Model is null. Please ensure data is passed correctly from the controller.</p>
+}
+
+ *@
+
+
+
+
+
+@model Prescription
+@{
+    ViewData["Title"] = "Add Prescription";
+}
+
+<h1>Add Prescription</h1>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="AddPrescription" method="post" style="text-align: left; margin: 0 25rem">
+    <div class="form-group mb-1">
+        <label asp-for="PatientId">Patient Id:</label>
+        <input asp-for="PatientId" class="form-control" readonly />
+        <input type="hidden" asp-for="PatientId" />
+    </div>
+    <div class="form-group mb-1">
+        <label asp-for="AppointmentId">Appointment Id:</label>
+        <input asp-for="AppointmentId" class="form-control" readonly />
+        <input type="hidden" asp-for="AppointmentId" />
+    </div>    
+    <div class="form-group mb-1">
+        <label asp-for="DoctorId">Doctor Id:</label>
+        <input asp-for="DoctorId" class="form-control" readonly />
+        <input type="hidden" asp-for="DoctorId" />
+    </div>
+    <div class="form-group mb-1">
+        <label asp-for="PrescriptionInfo">Prescription:</label>
+        <textarea asp-for="PrescriptionInfo" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="PrescriptionInfo" class="text-danger"></span>
+    </div>    
+    <div class="form-group mb-1">
+        <label asp-for="NextAppointment">Next Appointment:</label>
+        <textarea asp-for="NextAppointment" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="NextAppointment" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success mb-5">Add Prescription</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

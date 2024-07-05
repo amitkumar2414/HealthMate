@@ -1,0 +1,218 @@
+﻿@model BookAnAppointment
+@{
+    ViewData["Title"] = "Create Appointment";
+    var patient = ViewBag.Patient as HealthMate.Models.Patient;
+}
+
+<section class="bookForm text-dark" style="padding: 0 15rem">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Book An Appointment</h1>
+        <p class="lead">Please fill out the form below to book an appointment with our hospital.</p>
+    </div>
+    <form asp-area="Patient" asp-action="CreateAppointment" asp-controller="BookAnAppointment" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="PatientId" value="@patient.Id" />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Patient Name *</label>
+                    <input asp-for="Name" class="form-control" value="@patient.Name" readonly />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <small class="form-text text-primary">Patient name will be automatically filled.</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Age" class="control-label">Age *</label>
+                    <input asp-for="Age" class="form-control" value="@patient.Age" readonly />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                    <small class="form-text text-primary">Age will be automatically filled.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DoctorId" class="control-label">Select Doctor *</label>
+                    <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.Doctors" required>
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="DoctorId" class="text-danger"></span>
+                    <small class="form-text text-primary">Please select a doctor.</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label">Preferred Appointment Date *</label>
+                    <input asp-for="Date" class="form-control" required />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                    <small class="form-text text-primary">Please select a date and time that works for you.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Enter any additional information or description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <small class="form-text text-primary">Please enter any additional information that may be helpful for our staff.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary btn-block">Book Appointment</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#PatientId').change(function () {
+                var patientId = $(this).val();
+                if (patientId) {
+                    $.ajax({
+                        url: '@Url.Action("GetPatientDetails", "BookAnAppointment")',
+                        type: 'GET',
+                        data: { id: patientId },
+                        success: function (data) {
+                            $('#Age').val(data.age);
+                            $('#Name').val(data.name);
+                        }
+                    });
+                } else {
+                    $('#Age').val('');
+                    $('#Name').val('');
+                }
+            });
+        });
+    </script>
+}
+
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff; 
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333; 
+    }
+
+    input[type="text"], input[type="number"], input[type="tel"], input[type="date"], select, textarea {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff; 
+        color: #333; 
+        transition: border-color 0.3s ease-in-out;
+    }
+
+        input[type="text"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+            border-color: #337ab7; 
+            box-shadow: 0 0 10px rgba(51, 122, 183, 0.3);
+        }
+
+    textarea {
+        height: auto;
+        resize: vertical;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #337ab7;
+        color: #fff; 
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        button[type="submit"]:hover {
+            background-color: #23527c; 
+        }
+
+    .error {
+        color: #ff0000;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+  
+
+    .header {
+        background-color: #337ab7;
+        color: #fff; 
+        padding: 10px;
+        text-align: center;
+    }
+
+        .header h1 {
+            margin: 0;
+        }
+
+    .bookForm {
+        background-color: #f7f7f7; 
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .bookForm h1 {
+            color: #337ab7; 
+            margin-top: 0;
+        }
+
+        .bookForm label {
+            color: #333; 
+        }
+
+        .bookForm input[type="text"], .bookForm input[type="number"], .bookForm input[type="tel"], .bookForm input[type="date"], .bookForm select, .bookForm textarea {
+            border-color: #337ab7; 
+        }
+
+        .bookForm button[type="submit"] {
+            background-color: #337ab7; 
+            color: #fff; 
+        }
+
+            .bookForm button[type="submit"]:hover {
+                background-color: #23527c; 
+            }
+
+</style>

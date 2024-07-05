@@ -1,0 +1,254 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.bg-image {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+    .bg-image img {
+        width: 100%;
+        height: 100vh; /* Make image full height */
+        object-fit: cover; /* Ensure image covers full width and height */
+        display: block;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Ensure the text is above the background */
+    text-align: center;
+}
+
+#about-us {
+    background-color: #f8f9fa; /* Light background for contrast */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+    #about-us h2 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        margin-top: 1.3rem;
+    }
+
+    #about-us p {
+        margin-bottom: 0;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        text-align: center;
+        padding: 1.4rem;
+    }
+
+    /* Adjust the size of the image in the "About Us" section */
+    #about-us .col-md-6 img {
+        max-width: 100%; /* Resize the image */
+        height: auto; /* Maintain aspect ratio */
+        margin: 0; /* Center the image within the column */
+    }
+
+#our-departments {
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+    #our-departments h2 {
+        margin-bottom: 1rem;
+    }
+
+    #our-departments p {
+        margin-bottom: 2rem;
+    }
+
+    #our-departments .col-md-3 img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    #our-departments h4 {
+        margin-bottom: 1rem;
+        font-size: 1.25rem; /* Adjust font size */
+    }
+
+    #our-departments p {
+        margin-bottom: 0;
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+/* Add hover effect */
+.department {
+    transition: transform 0.3s, background-color 0.3s;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+    .department:hover {
+        transform: scale(1.05);
+        background-color: #e3f2fd; /* Light blue background */
+        cursor: pointer;
+    }
+
+    .department img {
+        transition: transform 0.3s;
+    }
+
+    .department:hover img {
+        transform: scale(1.1);
+    }
+
+/* CSS for the new section */
+#book-appointment {
+    background-color: #e9ecef; /* Light grey background */
+}
+
+    #book-appointment h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    #book-appointment p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    #book-appointment .btn {
+        font-size: 1.2rem;
+    }
+
+
+#our-doctors {
+    background-color: #343a40; /* Dark background from Bootswatch Darkly */
+    color: #ffffff; /* White text color */
+}
+
+    #our-doctors h2 {
+        margin-bottom: 1rem;
+    }
+
+    #our-doctors p {
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
+
+.doctor-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .doctor-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .doctor-card .card {
+        height: 100%;
+    }
+
+    .doctor-card .card-img-top {
+        border-radius: 50%;
+        max-width: 100%;
+    }
+
+    .doctor-card .card-body {
+        text-align: center;
+    }
+
+.card-title {
+    font-size: 1.25rem;
+    color: #007bff; /* Primary blue color */
+}
+
+.card-text {
+    font-size: 1rem; 
+    color: #302902; /* Dark grey color */
+}
+
+    .card-text.text-muted {
+        font-size: 0.9rem;
+    }
+
+footer {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+    margin-top: 2rem; /* Added margin-top to separate from the previous section */
+}
+
+    footer h5 {
+        margin-bottom: 1rem;
+        color: #ffffff; /* White text color */
+    }
+
+    footer address, footer ul {
+        margin-bottom: 0;
+    }
+
+    footer ul {
+        padding-left: 0;
+        list-style: none;
+    }
+
+        footer ul li {
+            margin-bottom: 0.5rem;
+        }
+
+            footer ul li a {
+                color: #ffffff; /* White text color */
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                footer ul li a:hover {
+                    color: #007bff; /* Bootstrap primary color for hover effect */
+                }
+
+.footer-bottom {
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+}
+
+    .footer-bottom a {
+        color: #ffffff; /* White text color */
+    }
+
+        .footer-bottom a:hover {
+            color: #007bff; /* Bootstrap primary color for hover effect */
+        }
