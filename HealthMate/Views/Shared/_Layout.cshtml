@@ -51,7 +51,7 @@
                                 <a class="nav-link text-dark" asp-area="Patient" asp-controller="BloodAvailability" asp-action="Index">Blood Availability</a>
                             </li> *@
                         //}
-                        @if (User.Identity.IsAuthenticated && !User.IsInRole("Doctor"))
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole("Doctor") && !User.IsInRole("Labotratorist"))
                         {
                             @* <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Patient" asp-controller="Home" asp-action="Index">Home</a>
@@ -71,6 +71,16 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Doctor" asp-controller="Doctor" asp-action="Index">Manage Appointments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Patient" asp-controller="BloodAvailability" asp-action="Index">Blood Availability</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Labotratorist"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Labotratorist" asp-controller="Lab" asp-action="Index">Manage Reports</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Patient" asp-controller="BloodAvailability" asp-action="Index">Blood Availability</a>
