@@ -16,7 +16,7 @@ namespace HealthMate.Data
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
-        public DbSet<Diagnosis> Diagnoses { get; set; }
+        public DbSet<Diagnosis> Diagnosis { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,6 +40,10 @@ namespace HealthMate.Data
                 .OnDelete(DeleteBehavior.Restrict); // Change to Restrict or SetNull
 
             // Configure Diagnosis relationships
+            modelBuilder.Entity<Diagnosis>()
+                .Property(d => d.Id)
+                .ValueGeneratedOnAdd();
+
             modelBuilder.Entity<Diagnosis>()
                 .HasOne(d => d.Doctor)
                 .WithMany(d => d.Diagnoses)

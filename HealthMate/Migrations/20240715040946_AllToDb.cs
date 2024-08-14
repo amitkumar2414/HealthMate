@@ -238,39 +238,39 @@ namespace HealthMate.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Diagnoses",
+                name: "Diagnosis",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Hemoglobin = table.Column<double>(type: "float", nullable: false),
-                    TLC = table.Column<double>(type: "float", nullable: false),
-                    DLC = table.Column<double>(type: "float", nullable: false),
-                    RBCCount = table.Column<double>(type: "float", nullable: false),
-                    PlateletsCount = table.Column<double>(type: "float", nullable: false),
-                    BloodSugar = table.Column<double>(type: "float", nullable: false),
-                    ReferredByDoctor = table.Column<bool>(type: "bit", nullable: false),
+                    AppointmentId = table.Column<int>(type: "int", nullable: false),
                     DoctorId = table.Column<int>(type: "int", nullable: false),
                     PatientId = table.Column<int>(type: "int", nullable: false),
-                    AppointmentId = table.Column<int>(type: "int", nullable: false)
+                    ReferredByDoctor = table.Column<bool>(type: "bit", nullable: false),
+                    Hemoglobin = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TLC = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DLC = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RBCCount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PlateletsCount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    BloodSugar = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Diagnoses", x => x.Id);
+                    table.PrimaryKey("PK_Diagnosis", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Diagnoses_BookedAppointments_AppointmentId",
+                        name: "FK_Diagnosis_BookedAppointments_AppointmentId",
                         column: x => x.AppointmentId,
                         principalTable: "BookedAppointments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Diagnoses_Doctors_DoctorId",
+                        name: "FK_Diagnosis_Doctors_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Diagnoses_Patients_PatientId",
+                        name: "FK_Diagnosis_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
@@ -362,18 +362,18 @@ namespace HealthMate.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Diagnoses_AppointmentId",
-                table: "Diagnoses",
+                name: "IX_Diagnosis_AppointmentId",
+                table: "Diagnosis",
                 column: "AppointmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Diagnoses_DoctorId",
-                table: "Diagnoses",
+                name: "IX_Diagnosis_DoctorId",
+                table: "Diagnosis",
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Diagnoses_PatientId",
-                table: "Diagnoses",
+                name: "IX_Diagnosis_PatientId",
+                table: "Diagnosis",
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
@@ -411,7 +411,7 @@ namespace HealthMate.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Diagnoses");
+                name: "Diagnosis");
 
             migrationBuilder.DropTable(
                 name: "Prescriptions");

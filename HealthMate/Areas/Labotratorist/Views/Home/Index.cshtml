@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="bg-image">
+    <img src="img/homeBackground.jpg" alt="Background Image" class="img-fluid">
+    <div class="overlay"></div>
+</div>
+
+<div class="content d-flex flex-column justify-content-center align-items-center text-center">
+    <div class="mb-3"><h1 class="text-white">HealthMate</h1></div>
+    <div class="mb-4"><h3 class="text-white">Helping to Build a Healthy Community</h3></div>
+    <div><a class="btn btn-success btn-lg mt-4" asp-area="" asp-controller="BookAnAppointment" asp-action="Index">Book an Appointment</a></div>
+</div>
+
+<section id="about-us" class="">
+    <div class="container text-dark">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>About Us</h2>
+                <p>Welcome to HealthMate, your trusted partner in building a healthy community. Our mission is to provide exceptional healthcare services and support to individuals and families. We believe in holistic care, focusing on both physical and mental well-being. Join us in our journey to create a healthier future for everyone.</p>
+            </div>
+            <div class="col-md-6" style="text-align: end">
+                <img src="img/AdobeStock_1872635_Preview.jpeg" alt="About Us Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="our-departments" class="py-5 bg-white text-dark">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2>Our Departments</h2>
+            <p style="font-style: italic; font-size: 18px">Explore our specialized departments designed to provide comprehensive care and advanced medical services.</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-6 text-center department">
+                <img src="img/Diagnosis.jpg" alt="Diagnostic Test" class="img-fluid mb-2">
+                <h4>Diagnostic Test</h4>
+                <p style="font-style: italic">Our Diagnostic Test department offers state-of-the-art testing and imaging services to accurately diagnose medical conditions.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 text-center department">
+                <img src="img/Vaccine.jpg" alt="Skin Surgery" class="img-fluid mb-2">
+                <h4>Vaccine Service</h4>
+                <p style="font-style: italic">Our Vaccine Service department provides a wide range of vaccinations to protect you and your family against various infectious diseases.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 text-center department">
+                <img src="img/Surgery.jpg" alt="Surgery Service" class="img-fluid mb-2">
+                <h4>Surgery Service</h4>
+                <p style="font-style: italic">Our Surgery Service department provides comprehensive surgical care, ensuring the best possible outcomes for our patients.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="book-appointment" class="py-5 bg-light text-dark text-center">
+    <div class="container">
+        <div class="row align-items-center" style="margin: auto 5rem">
+            <div class="col-md-6 text-left">
+                <h2>Your Health, Our Priority</h2>
+                <p>Don’t wait until it’s too late. Book an appointment with our specialists today and take the first step towards a healthier you.</p>
+            </div>
+            <div class="col-md-6 text-md-right mt-4 mt-md-0">
+                <a class="btn btn-primary btn-lg" asp-area="" asp-controller="BookAnAppointment" asp-action="Index">Book an Appointment</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="our-doctors" class="py-5 text-dark" style="background-color: #e3f2fd">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2>Our Qualified Doctors</h2>
+            <p>Meet our dedicated team of doctors who specialize in providing exceptional healthcare services.</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-5 doctor-card mb-4">
+                <div class="card p-3 bg-light text-dark">
+                    <img src="img/D3.jpg" class="card-img-top" alt="Doctor Image">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary mb-1">Dr. Amit Kr. Shakya</h5>
+                        <p class="card-text mb-1">MD (Nurologist)</p>
+                        <p class="card-text mb-1">Experience: 10 years</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 doctor-card mb-4">
+                <div class="card p-3 bg-light text-dark">
+                    <img src="img/Fdoctor1.jpg" class="card-img-top" alt="Doctor Image">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary mb-1">Dr. Vaishnavi</h5>
+                        <p class="card-text mb-1">MD (Cardiology)</p>
+                        <p class="card-text mb-1">Experience: 15 years</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="border-top footer text-muted py-4 bg-dark text-white " style="margin: auto">
+    <div class="container-lg-10" style="padding: 1.3rem; text-align: left">
+        <div class="row">
+            <!-- Address Section -->
+            <div class="col-lg-4 col-md-6 mb-3">
+                <h5 class="text-white">Contact Us</h5>
+                <address>
+                    HealthMate Hospital<br>
+                    Chandigarh University<br>
+                    Mohali, Punjab<br>
+                    PIN: 140413<br>
+                    Phone: +91 7814862098<br>
+                    Email: amitkumar2414@outlook.com
+                </address>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-3">
+                <h5 class="text-white">Follow Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="#" class="text-white"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#" class="text-white"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#" class="text-white"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12 mb-3">
+                <h5 class="text-white">Opening Hours</h5>
+                <ul class="list-unstyled">
+                    <li>Monday - Friday: 8:00 AM - 8:00 PM</li>
+                    <li>Saturday: 9:00 AM - 5:00 PM</li>
+                    <li>Sunday: Closed</li>
+                    <li>
+                        <h6 class="text-danger">Emergency Open: 24/7 Hrs.</h6>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                &copy; 2024 - Tech Mahindra - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white">Privacy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+

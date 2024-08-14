@@ -21,12 +21,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (!User.Identity.IsAuthenticated && !User.IsInRole("Doctor"))
+                        @if (!User.Identity.IsAuthenticated)
                         {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#about-us">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#our-departments">Our Departments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#our-doctors">Our Doctors</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Patient" asp-controller="BloodAvailability" asp-action="Index">Blood Availability</a>
+                            </li>
+                        }
+                        //@if (!User.Identity.IsAuthenticated && !User.IsInRole("Doctor"))
+                        //{
                             @* <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Patient" asp-controller="Home" asp-action="Index">Home</a>
                             </li> *@
-                            <li class="nav-item">
+@*                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Patient" asp-controller="BookAnAppointment" asp-action="Index">Book An Appointment</a>
                             </li>
                             <li class="nav-item">
@@ -34,8 +49,8 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Patient" asp-controller="BloodAvailability" asp-action="Index">Blood Availability</a>
-                            </li>
-                        }
+                            </li> *@
+                        //}
                         @if (User.Identity.IsAuthenticated && !User.IsInRole("Doctor"))
                         {
                             @* <li class="nav-item">

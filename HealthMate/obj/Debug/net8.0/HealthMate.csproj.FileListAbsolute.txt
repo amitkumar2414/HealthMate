@@ -284,3 +284,4 @@ C:\Users\amitk\source\repos\HealthMate\HealthMate\obj\Debug\net8.0\refint\Health
 C:\Users\amitk\source\repos\HealthMate\HealthMate\obj\Debug\net8.0\HealthMate.pdb
 C:\Users\amitk\source\repos\HealthMate\HealthMate\obj\Debug\net8.0\HealthMate.genruntimeconfig.cache
 C:\Users\amitk\source\repos\HealthMate\HealthMate\obj\Debug\net8.0\ref\HealthMate.dll
+C:\Users\amitk\source\repos\HealthMate\HealthMate\obj\Debug\net8.0\HealthMate.sourcelink.json

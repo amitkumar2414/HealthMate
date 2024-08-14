@@ -1,0 +1,62 @@
+﻿@using HealthMate.Models
+@model Diagnosis
+
+@{
+    ViewData["Title"] = "Generate Report";
+}
+
+<h2>Generate Report</h2>
+
+<form asp-action="GenerateReport" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label asp-for="Hemoglobin" class="control-label"></label>
+        <input asp-for="Hemoglobin" class="form-control" />
+        <span asp-validation-for="Hemoglobin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TLC" class="control-label"></label>
+        <input asp-for="TLC" class="form-control" />
+        <span asp-validation-for="TLC" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DLC" class="control-label"></label>
+        <input asp-for="DLC" class="form-control" />
+        <span asp-validation-for="DLC" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RBCCount" class="control-label"></label>
+        <input asp-for="RBCCount" class="form-control" />
+        <span asp-validation-for="RBCCount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PlateletsCount" class="control-label"></label>
+        <input asp-for="PlateletsCount" class="form-control" />
+        <span asp-validation-for="PlateletsCount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BloodSugar" class="control-label"></label>
+        <input asp-for="BloodSugar" class="form-control" />
+        <span asp-validation-for="BloodSugar" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="hidden" asp-for="AppointmentId" />
+        <input type="hidden" asp-for="DoctorId" />
+        <input type="hidden" asp-for="PatientId" />
+        <input type="hidden" asp-for="ReferredByDoctor" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success mb-5">Generate Report</button>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

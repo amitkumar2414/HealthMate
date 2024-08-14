@@ -127,32 +127,32 @@ namespace HealthMate.Migrations
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
-                    b.Property<double>("BloodSugar")
-                        .HasColumnType("float");
+                    b.Property<decimal>("BloodSugar")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("DLC")
-                        .HasColumnType("float");
+                    b.Property<decimal>("DLC")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Hemoglobin")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Hemoglobin")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.Property<double>("PlateletsCount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("PlateletsCount")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("RBCCount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("RBCCount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("ReferredByDoctor")
                         .HasColumnType("bit");
 
-                    b.Property<double>("TLC")
-                        .HasColumnType("float");
+                    b.Property<decimal>("TLC")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -162,7 +162,7 @@ namespace HealthMate.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Diagnoses");
+                    b.ToTable("Diagnosis");
                 });
 
             modelBuilder.Entity("HealthMate.Models.Patient", b =>

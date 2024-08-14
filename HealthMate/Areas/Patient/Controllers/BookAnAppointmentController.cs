@@ -254,6 +254,31 @@ namespace HealthMate.Areas.Patient.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelAppointment(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var patient = _context.Patients.FirstOrDefault(p => p.Email == user.Email);
+
+            if (patient == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var appointment = _context.BookedAppointments.FirstOrDefault(b => b.Id == id && b.PatientId == patient.Id && b.Status == "Pending");
+            if (appointment != null)
+            {
+                appointment.Status = "Cancelled";
+                _context.Update(appointment);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
         [HttpGet]
         public JsonResult GetPatientDetails(int id)
         {
@@ -282,7 +307,7 @@ namespace HealthMate.Areas.Patient.Controllers
 
                     if (prescription != null)
                     {
-                        var diagnosis = _context.Diagnoses
+                        var diagnosis = _context.Diagnosis
                             .FirstOrDefault(d => d.AppointmentId == appointment.Id);
 
                         var data = new

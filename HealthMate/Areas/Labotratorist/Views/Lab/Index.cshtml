@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<BookAnAppointment>
-
+@* @model IEnumerable<Diagnosis>
+ *@
 @{
     ViewData["Title"] = "Lab Profile";
 }
@@ -9,38 +10,46 @@
 <table class="table table-dark table-striped">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Appointment Id</th>
+            <th>Patient Id</th>
+            <th>Patient Name</th>
+            <th>Doctor Id</th>
             <th>Date</th>
-            <th>Status</th>
+            <th>Refered By Dr.</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var appointment in Model)
+        @foreach (var diagnosis in Model)
         {
             <tr>
-                <td>@appointment.Name</td>
-                <td>@appointment.Age</td>
-                <td>@appointment.Date</td>
-                <td>@appointment.Status</td>
+                <td>@diagnosis.Id</td>
+                <td>@diagnosis.PatientId</td>
+                <td>@diagnosis.Patient.Name</td>
+                <td>@diagnosis.DoctorId</td>
+                <td>@diagnosis.Date</td>
+                <td>@diagnosis.Doctor.Name</td>
                 <td>
-                    @if (appointment.Status == "Pending")
-                    {
-                        <button class="btn btn-success" onclick="updateStatus(@appointment.Id, 'Approved')">Approve</button>
-                        <button class="btn btn-danger" onclick="updateStatus(@appointment.Id, 'Rejected')">Reject</button>
-                    }
-                    @if (appointment.Status == "Approved")
-                    {
-                        <button class="btn btn-primary" onclick="updateStatus(@appointment.Id, 'Appointed')">Appoint</button>
-                    }
-                    @if (appointment.Status == "Appointed")
-                    {
-                        <button class="btn btn-info" onclick="addPrescription(@appointment.Id)">Add Prescription</button>
-                        <button class="btn btn-warning" onclick="requestDiagnosis(@appointment.Id)">Request Diagnosis</button>
-                    }
+                    <a class="btn btn-success" asp-area="Labotratorist" asp-controller="Lab" asp-action="GenerateReport" asp-route-id="@diagnosis.Id">Generate Report</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+@* @model List<Diagnosis>
+
+<h1>Diagnoses Referred by Doctor for Appointment</h1>
+
+@foreach (var diagnosis in Model)
+{
+    <div>
+        <h4>Diagnosis ID: @diagnosis.Id</h4>
+        <p>Patient: @diagnosis.Patient.Name</p>
+        <p>Doctor: @diagnosis.Doctor.Name</p>
+        <!-- Display other diagnosis details as needed -->
+        <hr />
+    </div>
+}
+ *@

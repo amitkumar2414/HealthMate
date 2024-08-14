@@ -32,7 +32,7 @@ namespace HealthMate.Areas.Patient.Controllers
             }
 
             // Get diagnoses for the logged-in patient
-            var diagnoses = _context.Diagnoses
+            var diagnoses = _context.Diagnosis
                 .Include(d => d.Patient)
                 .Include(d => d.Doctor)
                 .Include(d => d.Appointment)
@@ -54,7 +54,7 @@ namespace HealthMate.Areas.Patient.Controllers
         {
             try
             {
-                var diagnosis = _context.Diagnoses
+                var diagnosis = _context.Diagnosis
                     .Include(d => d.Patient)
                     .Include(d => d.Doctor)
                     .FirstOrDefault(d => d.Id == id);

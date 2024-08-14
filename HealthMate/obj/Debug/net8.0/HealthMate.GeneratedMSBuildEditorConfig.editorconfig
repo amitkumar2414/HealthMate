@@ -210,6 +210,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/amitk/source/repos/HealthMate/HealthMate/Areas/Labotratorist/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFib3RyYXRvcmlzdFxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/amitk/source/repos/HealthMate/HealthMate/Areas/Labotratorist/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFib3RyYXRvcmlzdFxWaWV3c1xIb21lXFByaXZhY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/amitk/source/repos/HealthMate/HealthMate/Areas/Labotratorist/Views/Lab/GenerateReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFib3RyYXRvcmlzdFxWaWV3c1xMYWJcR2VuZXJhdGVSZXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/amitk/source/repos/HealthMate/HealthMate/Areas/Labotratorist/Views/Lab/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFib3RyYXRvcmlzdFxWaWV3c1xMYWJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
