@@ -13,9 +13,9 @@ using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("HealthMate")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06d373d0918853707c2fde59604b5aa2702e87f8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbd7daccc12799fbe033b1a3b93ce28980471afe")]
 [assembly: System.Reflection.AssemblyProductAttribute("HealthMate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HealthMate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
