@@ -47,28 +47,24 @@ app.MapRazorPages();
 
 app.UseEndpoints(endpoints =>
 {
-    // Route configuration for Doctor area
     endpoints.MapAreaControllerRoute(
         name: "DoctorArea",
         areaName: "Doctor",
         pattern: "Doctor/{controller=Doctor}/{action=Index}/{id?}"
     );
 
-    // Route configuration for Lab area
     endpoints.MapAreaControllerRoute(
         name: "LabotratoristArea",
         areaName: "Labotratorist",
         pattern: "Labotratorist/{controller=Lab}/{action=Index}/{id?}"
     );
 
-    // Route configuration for Patient area (default)
     endpoints.MapAreaControllerRoute(
         name: "PatientArea",
         areaName: "Patient",
         pattern: "Patient/{controller=Home}/{action=Index}/{id?}"
     );
 
-    // Fallback default route (in case no area is specified)
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{area=Patient}/{controller=Home}/{action=Index}/{id?}"
